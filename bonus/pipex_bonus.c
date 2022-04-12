@@ -6,7 +6,7 @@
 /*   By: jthor <jthor@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 22:26:11 by jthor             #+#    #+#             */
-/*   Updated: 2022/04/12 22:26:12 by jthor            ###   ########.fr       */
+/*   Updated: 2022/04/13 01:49:25 by jthor            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ void	init_hd(t_ppx_b *info, char **argv, int last)
 
 	limiter = ft_strjoin(argv[2], "\n");
 	tempfile = open(".tempfile.txt", O_WRONLY | O_CREAT, 00644);
-	write(1, "pipe heredoc>", 13);
+	write(1, "pipex heredoc> ", 15);
 	line = get_next_line(STDIN_FILENO);
 	while (ft_strncmp(line, limiter, ft_strlen(limiter)) != 0)
 	{
 		write(tempfile, line, ft_strlen(line));
 		free(line);
-		write(1, "pipe heredoc>", 13);
+		write(1, "pipex heredoc> ", 15);
 		line = get_next_line(STDIN_FILENO);
 	}
 	free(line);
