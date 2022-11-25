@@ -12,6 +12,12 @@
 
 #include "pipex.h"
 
+// NOTE: This file contains functions for the mandatory only.
+
+/*
+This function calls the helper functions to fill out the IO files, command
+paths and argument string arrays.
+*/
 void	init_struct(t_pipex *info, int argc, char **argv, char **envp)
 {
 	if (argc != 5)
@@ -23,6 +29,11 @@ void	init_struct(t_pipex *info, int argc, char **argv, char **envp)
 	fill_path(info, info->args_2[0], envp, 2);
 }
 
+/*
+Checks the infile to see if it exists, and that the system has reading rights,
+and checks if the outfile exists, and if it does if the system has write
+access. If the outfile does not exist, create it. If no problems, open() them.
+*/
 void	test_and_fill_io(t_pipex *info, char **argv)
 {
 	if (access(argv[1], R_OK | F_OK) == -1)
@@ -43,6 +54,10 @@ void	test_and_fill_io(t_pipex *info, char **argv)
 		err_msg("Outfile open() failure.");
 }
 
+/*
+Splits the command line. The resulting string array consists of the command and
+it's arguments.
+*/
 void	fill_arg(t_pipex *info, char *com_line, int flag)
 {
 	char	**temp_val;
@@ -56,6 +71,14 @@ void	fill_arg(t_pipex *info, char *com_line, int flag)
 		info->args_2 = temp_val;
 }
 
+/*
+Look at the function below first.
+
+This function is a helper so that it is possible to use self-made commands
+that is located in the current directory as the pipex executable. Note that
+the condition for this command to be recognised is that the relative path is
+clearly stated during pragram execution, e.g. ./my_command
+*/
 int	check_alt_name(t_pipex *info, char *name, int flag)
 {
 	char	*temp_path;
@@ -84,6 +107,16 @@ int	check_alt_name(t_pipex *info, char *name, int flag)
 	}
 }
 
+/*
+This function takes the command from the string array from fill_arg. The
+command would be at index 0 of the string array. Here, it then uses the
+paths from envp to find where the command executable is located in the
+computer files. Once the command path is created, it is then tested to see
+if it exists and the system has execution rights.
+
+Note that a modified version of ft_strjoin() must be used here for formatting
+reasons.
+*/
 void	fill_path(t_pipex *info, char *name, char **envp, int flag)
 {
 	char	**temp_env;

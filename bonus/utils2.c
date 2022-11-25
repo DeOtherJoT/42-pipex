@@ -65,6 +65,9 @@ static int	word_split(char const *s, char c, char **ret, int i)
 	return (1);
 }
 
+/*
+Function that splits the string s according to the delimiter character c.
+*/
 char	**ft_split(const char *s, char c)
 {
 	char	**ret;
@@ -92,6 +95,10 @@ char	**ft_split(const char *s, char c)
 	return (ret);
 }
 
+/*
+Function that duplicates the string s and returns a pointer
+to the address of the duplicated string.
+*/
 char	*ft_strdup(const char *s)
 {
 	int		i;

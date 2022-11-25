@@ -12,6 +12,10 @@
 
 #include "pipex.h"
 
+/*
+Helper function that closes file descriptors, frees malloc'd array and
+deletes the hidden tempfile from the current directory.
+*/
 void	close_info(t_ppx_b *info)
 {
 	close(info->infile);
@@ -20,6 +24,19 @@ void	close_info(t_ppx_b *info)
 	unlink(".tempfile.txt");
 }
 
+/*
+Helper function that executes the command line passed as cmd. Example :-
+
+BEFORE
+char *cmd = "echo Hello"
+
+AFTER
+char **cmd_args = {'echo', 'Hello'}
+char *cmd_path = "usr/bin/echo" (example)
+
+As applied in the mandatory part, it is possible to use self-made commands
+as long as the relative path to the executable is stated.
+*/
 void	exec_cmd(t_ppx_b info, char *cmd, char **envp)
 {
 	char	*cmd_path;
@@ -46,6 +63,14 @@ void	exec_cmd(t_ppx_b info, char *cmd, char **envp)
 	execve(cmd_path, cmd_args, envp);
 }
 
+/*
+Helper function that manages how the tempfiles are accessed, depending on the
+value of the parameter flag.
+	0 -	open tempfile.txt as input file, and create tempfile2.txt as the
+		output file.
+	1 -	close the file descriptors for both tempfiles
+	2 -	open both tempfiles in order to copy tempfile2 into tempfile.
+*/
 void	manage_temp(int *temp_fd, int flag)
 {
 	if (flag == 0)
@@ -67,6 +92,11 @@ void	manage_temp(int *temp_fd, int flag)
 	}
 }
 
+/*
+This function takes the contents of the infile and copies it into a
+hidden tempfile. This allows the input file to always be .tempfile.txt
+during the execution of loop_exec().
+*/
 void	prep_tempfile(int infile)
 {
 	int		tempfile;
@@ -86,6 +116,10 @@ void	prep_tempfile(int infile)
 	close(tempfile);
 }
 
+/*
+This function gets and stores the possible paths where the command executables
+are kept, e.g. usr/bin
+*/
 void	init_paths(t_ppx_b *info, char **envp)
 {
 	int		flag;

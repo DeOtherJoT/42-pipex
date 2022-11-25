@@ -12,6 +12,10 @@
 
 #include "pipex.h"
 
+/*
+Lonely function that serves to copy the file contents of src to dest,
+referenced by their file descriptors.
+*/
 void	cp_file(int src, int dest)
 {
 	char	*line;

@@ -12,6 +12,9 @@
 
 #include "pipex.h"
 
+/*
+Function that returns the length of the string s.
+*/
 size_t	ft_strlen(const char *s)
 {
 	size_t	i;
@@ -22,6 +25,10 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
+/*
+Function that compares the strings s1 and s2 and returns the
+difference betweeen them, or 0 if they are identical.
+*/
 int	ft_strncmp(const char *s1, const char *s2, int n)
 {
 	int	i;
@@ -38,6 +45,9 @@ int	ft_strncmp(const char *s1, const char *s2, int n)
 	return (0);
 }
 
+/*
+Modified version of ft_strjoin() for formatting reasons.
+*/
 char	*ft_strjoin_pipex(const char *s1, const char *s2)
 {
 	char	*retptr;
@@ -57,6 +67,9 @@ char	*ft_strjoin_pipex(const char *s1, const char *s2)
 	return (retptr);
 }
 
+/*
+Function that frees the string array passed as the parameter.
+*/
 void	ft_free_arr(char **free_me)
 {
 	int	i;
@@ -70,6 +83,9 @@ void	ft_free_arr(char **free_me)
 	free(free_me);
 }
 
+/*
+Function that terminates the program with an error message.
+*/
 void	err_msg(char *s)
 {
 	write(2, "Error message: ", 15);
