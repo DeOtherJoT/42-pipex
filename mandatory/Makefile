@@ -1,27 +1,39 @@
-SRCS	= init_struct.c utils.c utils2.c pipex.c
-OBJS	= $(SRCS:.c=.o)
-GCC_T	= gcc -Wall -Werror -Wextra -g -fsanitize=address
-GCC		= gcc -Wall -Werror -Wextra
+#EXEC#
+
 NAME	= pipex
-ARNAME	= pipex.a
-ARRCS	= ar rcs
-RM		= rm -f
 
-all : $(NAME)
+#COMMANDS & FLAGS#
 
-.c.o :
-	$(GCC) -I . -c $< -o $(<:.c=.o)
+GCC		= gcc -Wall -Wextra -Werror
+RM		= rm -rf
 
-$(NAME) : $(OBJS)
-	$(ARRCS) $(ARNAME) $(OBJS)
-	$(GCC) $(ARNAME) main.c -o $(NAME)
+#PATH#
 
-clean :
-	$(RM) $(OBJS) $(ARNAME)
+INC		= -Iincludes
+SRC_DIR	= srcs/
+MAIN	= main.c
 
-fclean : clean
-	$(RM) $(NAME) *.txt
+#SOURCE FILES#
 
-re : fclean all
+SRCS	=	$(addprefix $(SRC_DIR), init_struct.c pipex.c utils.c utils2.c)
+OBJS	=	$(SRCS:.c=.o)
 
-.PHONY : all clean fclean re
+#RECIPES#
+
+all		: $(NAME)
+
+$(NAME)	: $(OBJS)
+	$(GCC) $(INC) -o $(NAME) $(MAIN) $(OBJS)
+
+%.o		: %.c
+	$(GCC) $(INC) -c $< -o $@
+
+clean	:
+	$(RM) $(OBJS)
+
+fclean	: clean
+	$(RM) $(NAME)
+
+re		: fclean all
+
+.PHONY	: all clean fclean

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../includes/pipex.h"
 
 void	execute_child_1(t_pipex info, int pipe_fd[2], char **envp)
 {
