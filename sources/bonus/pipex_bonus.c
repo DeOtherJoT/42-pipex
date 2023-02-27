@@ -171,5 +171,4 @@ void	pipex(int argc, char **argv, char **envp)
 	}
 	last_exec(info, argv[index], envp);
 	close_info(&info);
-	return (0);
 }
