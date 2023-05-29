@@ -82,4 +82,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strldup(char const *s, int len);
 void	ft_handleptr(char **ptr, int mode);
 
+/* Bonus 2 */
+void	ft_calloc(size_t count, size_t size);
+
 #endif
