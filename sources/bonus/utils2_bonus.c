@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../includes/pipex.h"
 
 /*
 Lonely function that serves to copy the file contents of src to dest,

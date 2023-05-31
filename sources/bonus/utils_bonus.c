@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../includes/pipex.h"
 
 /*
 Helper function that closes file descriptors, frees malloc'd array and
 deletes the hidden tempfile from the current directory.
 */
-void	close_info(t_ppx_b *info)
+void	close_info(t_bppx *info)
 {
 	close(info->infile);
 	close(info->outfile);
@@ -37,7 +37,7 @@ char *cmd_path = "usr/bin/echo" (example)
 As applied in the mandatory part, it is possible to use self-made commands
 as long as the relative path to the executable is stated.
 */
-void	exec_cmd(t_ppx_b info, char *cmd, char **envp)
+void	exec_cmd(t_bppx info, char *cmd, char **envp)
 {
 	char	*cmd_path;
 	char	**cmd_args;
@@ -120,7 +120,7 @@ void	prep_tempfile(int infile)
 This function gets and stores the possible paths where the command executables
 are kept, e.g. usr/bin
 */
-void	init_paths(t_ppx_b *info, char **envp)
+void	init_paths(t_bppx *info, char **envp)
 {
 	int		flag;
 

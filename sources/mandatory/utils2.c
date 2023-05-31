@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../includes/pipex.h"
 
 static int	word_count(char const *s, char c)
 {

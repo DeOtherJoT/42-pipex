@@ -23,12 +23,12 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 
-typedef struct s_ppx_b
+typedef struct s_bppx
 {
 	int		infile;
 	int		outfile;
 	char	**paths;
-}	t_ppx_b;
+}	t_bppx;
 
 typedef struct s_pipex
 {
@@ -65,11 +65,11 @@ char	*ft_strdup(const char *s);
 void	err_msg(char *s);
 
 /* Bonus */
-void	close_info(t_ppx_b *info);
-void	exec_cmd(t_ppx_b info, char *cmd, char **envp);
+void	close_info(t_bppx *info);
+void	exec_cmd(t_bppx info, char *cmd, char **envp);
 void	manage_temp(int	*temp_fd, int flag);
 void	prep_tempfile(int infile);
-void	init_paths(t_ppx_b *info, char **envp);
+void	init_paths(t_bppx *info, char **envp);
 void	cp_file(int src, int dest);
 
 /* GNL */
@@ -83,6 +83,8 @@ char	*ft_strldup(char const *s, int len);
 void	ft_handleptr(char **ptr, int mode);
 
 /* Bonus 2 */
-void	ft_calloc(size_t count, size_t size);
+void	*ft_calloc(size_t count, size_t size);
+void	loop_exec2(t_bppx *info, char *cmd, char **envp);
+void	last_exec2(t_bppx *info, char *cmd, char **envp);
 
 #endif

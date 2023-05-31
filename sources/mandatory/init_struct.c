@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../includes/pipex.h"
 
 // NOTE: This file contains functions for the mandatory only.
 

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../includes/pipex.h"
 
 /*
 Function that returns the length of the string s.

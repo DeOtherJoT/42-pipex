@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../includes/pipex.h"
 
 /*
 This function does the last execve. The reason why this is different from
 loop_exec() is because the output goes to the intended outfile. For this
 reason, the use of tempfile2 is unnecessary.
 */
-void	last_exec(t_ppx_b info, char *cmd, char **envp)
+void	last_exec(t_bppx info, char *cmd, char **envp)
 {
 	pid_t	child;
 	int		infile;
@@ -50,7 +50,7 @@ The logic flow is as follows :-
 		command.
 	4.	Finally, delete tempfile2 using unlink().
 */
-void	loop_exec(t_ppx_b info, char *cmd, char **envp)
+void	loop_exec(t_bppx info, char *cmd, char **envp)
 {
 	int		temp_fd[2];
 	pid_t	child;
@@ -80,7 +80,7 @@ written by the user until a limiter is reached. This input text is stored
 in a tempfile that will reside as a hidden file in the current directory.
 Finally, the outfile is tested and stored.
 */
-void	init_hd(t_ppx_b *info, char **argv, int last)
+void	init_hd(t_bppx *info, char **argv, int last)
 {
 	char	*limiter;
 	char	*line;
@@ -114,7 +114,7 @@ files are tested for access and stored. In the end, prep_tempfile() takes the
 input file and then copies its contents into a tempfile that will reside as a
 hidden file in the current directory {.tempfile.txt}.
 */
-void	init_norm(t_ppx_b *info, char **argv, int last)
+void	init_norm(t_bppx *info, char **argv, int last)
 {
 	if (access(argv[1], R_OK | F_OK) == -1)
 		err_msg("Infile error");
@@ -148,7 +148,7 @@ and heredoc. Logic flow is a s follows :-
 */
 void	pipex(int argc, char **argv, char **envp)
 {
-	t_ppx_b	info;
+	t_bppx	info;
 	int		index;
 
 	if (argc < 5)
